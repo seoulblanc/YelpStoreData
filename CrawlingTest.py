@@ -34,7 +34,7 @@ for n in comment_class :
     print(nn)
     nnn = re.findall(r'\w+', nn)
     list_comment.append(nnn)
-    \
+    
 
 #print(list_comment)
 
