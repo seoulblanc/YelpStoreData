@@ -4,22 +4,21 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 
-URL1 = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York,+NY&start="
-
 def request_url():
+    URL1 = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York,+NY&start="
     try:
-        for i in range(0,1000):
-            URL2 = "%s" %(i*30)
-            URL = URL1 + URL2
-            req = requests.get(URL)
-            html = req.text
-            print(html)
-            return html
+        URL = URL1 + URL2
+        print(URL)
+        req = requests.get(URL)
+        html = req.text
+        return html
+
     except Exception as e:
         print(e)
         print("Error for URL")
 
-def get_data(html):
+def get_data():
+    html = request_url()
     # 매장 이름 가지고 오기
     soup = BeautifulSoup(html, 'html.parser')
     name_class = soup.findAll("a", {"class":"biz-name js-analytics-click"})
@@ -44,28 +43,50 @@ def get_data(html):
     # 매장 댓글 가지고 오기
     comment_class = soup.findAll("p", {"class":"snippet"})
     list_comment = []
-    for n in comment_class :
-        nn = n.text
-        nnn = re.findall(r'\w+ ', nn)
-        list_comment.append(nnn)
-    #print(list_comment)
 
+    for n in comment_class :
+            nn = n.text
+            nnn = re.findall(r'\w+ ', nn)
+            list_comment.append(nnn)
+
+    #print(list_comment)
     return list_comment, list_category, list_name
 
-def make_dataframe(list_comment,list_category,list_name):
-    df = pd.DataFrame(
-        {'comment' : list_comment,
-         'category': list_category,
-         'store' : list_name,
-        })
+def make_dataframe():
+    list_comment, list_category, list_name = get_data()
+    print(len(list_comment))
+    print(len(list_category))
+    print(len(list_name))
+
+    if i == 0 :
+        df = pd.DataFrame(
+            {'comment' : list_comment,
+            'category': list_category[1:31],
+            'store' : list_name[1:31],})
+    else :
+        df = pd.DataFrame(
+            {'comment': list_comment[1:31],
+            'category': list_category[1:31],
+            'store': list_name[1:31],})
     df['category'] = df['category'].str[0]
     # df['comment'] = df['comment'].str.strip('[]')
+    # print(df)
     return df
 
-def gather_df(df):
-    pass
+def gather_df():
+    df = make_dataframe()
+    print(df)
 
-def save_csv(all_df):
+def save_csv():
     pass
     # all_df.to_csv("c:/pythondata/Yepl_Test02.csv", header=True, index=False)
+
+if __name__ == "__main__":
+    alldf = pd.DataFrame(columns=('store', 'comment', 'category'))
+    print(alldf)
+    for i in range(0, 3):
+        URL2 = "%s" % (i * 30)
+        gather_df()
+
+
 
