@@ -55,7 +55,7 @@ def get_one_store():
     return one_store_info
 
 def save_csv():
-    alldf.to_csv("/Users/yoon/Documents/Yepl_Test03.csv", header=True, index=False)
+    alldf.to_csv("/Users/yoon/Documents/Yelp_NewYork_30.csv" , header=True, index=False)
 
 
 if __name__ == "__main__":
@@ -69,7 +69,6 @@ if __name__ == "__main__":
     #print(alldf)
     save_csv()
     print('Done')
-
 
 
 
