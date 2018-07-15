@@ -1,3 +1,4 @@
+# Yelp 크롤링 by columns
 
 import requests
 from bs4 import BeautifulSoup
