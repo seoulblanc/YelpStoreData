@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 
-
 def request_url():
     URL1 = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York,+NY&start="
     try:
