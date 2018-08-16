@@ -1,3 +1,5 @@
+# 기상청 홈페이지에서 1년 기상 데이터 가지고 오기
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
