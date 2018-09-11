@@ -1,4 +1,4 @@
-#yelp crawling (do not use)
+#yelp crawling (use this one)
 
 import requests
 from bs4 import BeautifulSoup
