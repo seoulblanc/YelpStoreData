@@ -1,4 +1,4 @@
-# Yelp 크롤링 by columns
+# Yelp crawling (do not use this one)
 
 import requests
 from bs4 import BeautifulSoup
