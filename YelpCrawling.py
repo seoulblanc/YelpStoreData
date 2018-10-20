@@ -4,6 +4,9 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def request_url():
     URL1 = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York,+NY&start="
@@ -55,7 +58,7 @@ def get_one_store():
     return one_store_info
 
 def save_csv():
-    alldf.to_csv("/Users/yoon/Documents/Yelp_NewYork_30.csv" , header=True, index=False)
+    alldf.to_csv("Yelp_NewYork_30.csv" , header=True, index=False)
 
 if __name__ == "__main__":
     alldf = pd.DataFrame(columns=('store', 'category','comment'))
