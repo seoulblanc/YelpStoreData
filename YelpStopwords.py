@@ -1,4 +1,5 @@
-alldf.to_csv("c:/pythondata/Yelp_NewYork_30.csv" , header=True, index=False)
+import pandas as pd 
+adlldf = pd.read_csv("Yelp_NewYork_30.csv") 
 alldf.head()
 #len(alldf)
 
